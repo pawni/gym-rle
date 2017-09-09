@@ -109,7 +109,12 @@ class RleEnv(gym.Env, utils.EzPickle):
         seed2 = seeding.hash_seed(seed1 + 1) % 2**31
         # Empirically, we need to seed before loading the ROM.
         self.rle.setInt(b'random_seed', seed2)
-        self.rle.loadROM(self.game_path, 'snes')
+
+        core = 'snes'
+	if 'pokemon' in self.game_path.lower():
+            core = 'gb'
+
+        self.rle.loadROM(self.game_path, core)
         return [seed1, seed2]
 
     def _step(self, a):
