@@ -111,7 +111,7 @@ class RleEnv(gym.Env, utils.EzPickle):
         self.rle.setInt(b'random_seed', seed2)
 
         core = 'snes'
-	if 'pokemon' in self.game_path.lower():
+        if 'pokemon' in self.game_path.lower():
             core = 'gb'
 
         self.rle.loadROM(self.game_path, core)
